@@ -1,0 +1,43 @@
+﻿@using GridMvc.Html;
+@using Tweetinvi;
+@using Tweetinvi.Core.Interfaces;
+@model IEnumerable<ITweet>
+@{
+    ViewBag.Title = "_Twitter";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/ladda-bootstrap/ladda-themeless.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/Scripts/gridmvc-ext.js"></script>
+<script src="~/Scripts/gridmvc.js"></script>
+<script src="~/Scripts/ladda-bootstrap/spin.min.js"></script>
+<script src="~/Scripts/ladda-bootstrap/ladda.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+
+@Html.Grid(Model).Columns(
+
+columns =>
+{
+    columns.Add().Encoded(false).Sanitized(false).RenderValueAs(
+
+        t => @<img src="@t.Creator.ProfileImageUrl" class="img-circle img-responsive" />
+
+
+        ).SetWidth(200);
+
+    columns.Add(t => t.Creator).Titled("Name").SetWidth(160);
+    columns.Add(t => t.CreatedAt.Date).Titled("Date").SetWidth(110);
+    columns.Add(t => t.FavouriteCount).Titled("FavouriteCount").SetWidth(110);
+    columns.Add(t => t.RetweetCount).Titled("RetweetCount").SetWidth(110);
+    columns.Add(t => t.Place).Titled("Place").SetWidth(110);
+    columns.Add(t => t.Text).Titled("Tweet").SetWidth(400);
+    columns.Add(t => t.TweetDTO.Id).Titled("Tweet Id").SetWidth(400);
+
+}
+
+        ).WithPaging(10);
+

@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/ladda-bootstrap/ladda-themeless.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/Scripts/gridmvc-ext.js"></script>
+<script src="~/Scripts/gridmvc.js"></script>
+<script src="~/Scripts/ladda-bootstrap/spin.min.js"></script>
+<script src="~/Scripts/ladda-bootstrap/ladda.min.js"></script>
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<div class="container">
+    <div class="row">
+
+        <div class="page-header">
+            <h1>
+                Search Your Advoctes
+                <small>By tweets</small>
+            </h1>
+        </div>
+        @using (Ajax.BeginForm("getdata", "Search", new AjaxOptions { UpdateTargetId = "result", InsertionMode=InsertionMode.Replace }))
+        {
+            <div class="container" style="padding: 91px 100px 10px 150px;">
+                <div class="col-md-6">
+
+                    <label class="sr-only" for="exampleInputEmail2">Search</label>
+                    <input type="text" name="serachKey" class="form-control" placeholder="searching..........">
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-info btn-lg" id="txtSearch">Serach</button>
+
+                    <input type="checkbox" id="chktwitter" name="provider" value="twitter"> Twitter
+
+                    <input type="checkbox" id="chkfacebok" name="provider" value="facebook"> Facebook
+
+                    <input type="checkbox" id="chklinkedin" name="provider" value="linkedin"> Linkedin
+
+                </div>
+            </div>
+
+
+        }
+
+        <div id="result">
+
+
+
+        </div>
+
+    </div>
+
+</div>
